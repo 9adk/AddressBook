@@ -91,6 +91,7 @@ public class AddressBookMain{
 			System.out.println("1.Add contact");
 			System.out.println("2.Edit existing contact");
 			System.out.println("3.Delete contact");
+			System.out.println("4.Display contact");
 			int choice = sc.nextInt();
 			sc.nextLine();
 
@@ -128,6 +129,10 @@ public class AddressBookMain{
 				String deleteName = sc.nextLine();
 				addBookMain.deleteContact(deleteName);
 				break;
+			case 4 :
+				addBookMain.viewList();
+				break;
+
 			}
 		}
 
