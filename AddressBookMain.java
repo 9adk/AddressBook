@@ -63,6 +63,16 @@ public class AddressBookMain{
 			i++;
 		}
 	}
+	
+	public void deleteContact(String name){
+		String x = "";
+		for(Contact c : Book) {
+			x = c.getFirstName() +" "+c.getLastName();
+			if(name.equals(x)) {
+				Book.remove(c);
+			}
+		}
+	}
 
 	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
@@ -72,6 +82,7 @@ public class AddressBookMain{
 		while(true) {
 			System.out.println("1.Add contact");
 			System.out.println("2.Edit existing contact");
+			System.out.println("3.Delete contact");
 			int choice = sc.nextInt();
 			sc.nextLine();
 
@@ -103,6 +114,11 @@ public class AddressBookMain{
 				System.out.println("Enter the Name to edit contact");
 				String name = sc.nextLine();
 				addBookMain.editContact(name);
+				break;
+			case 3 :
+				System.out.println("Enter the Name to delete contact");
+				String deleteName = sc.nextLine();
+				addBookMain.deleteContact(deleteName);
 				break;
 			}
 		}
