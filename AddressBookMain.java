@@ -73,6 +73,14 @@ public class AddressBookMain{
 			}
 		}
 	}
+	
+	public void viewList() {
+		
+		for(Contact c : Book) {
+			System.out.println("First Name : " + c.getFirstName() + "Last Name : " + c.getLastName() + " Address : " + c.getAddress() + " City : " + c.getCity() 
+							+ " State : " + c.getState() + " ZIP : " + c.getZip() + " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail() + "\n");
+		}
+	}
 
 	public static void main(String[] args){
 		Scanner sc = new Scanner(System.in);
