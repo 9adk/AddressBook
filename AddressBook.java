@@ -21,51 +21,36 @@ public class AddressBook{
 		for(Contact c : Book) {
 			x = c.getFirstName() +" "+ c.getLastName();
 			if(name.equals(x)) {
-				while(true) {
-					System.out.println("1.Change the address");
-					System.out.println("2.Change the city");
-					System.out.println("3.Change the state");
-					System.out.println("4.Change the ZIP code");
-					System.out.println("5.Change the phone number");
-					System.out.println("6.Change the Email id");
+				while(true) {					
+					System.out.println("1.Change the phone number");
+					System.out.println("2.Change the Email id");
+					System.out.println("3.exit");
 					int choice = sc.nextInt();
 					sc.nextLine();
-
 					switch(choice) {
 						case 1 : 
-							System.out.println("Enter new address");
-							String address = sc.nextLine();
-							c.setAddress(address);
-							break;
-						case 2 : 
-							System.out.println("Enter new city");
-							String city = sc.nextLine();
-							c.setCity(city);
-							break;
-						case 3 : 
-							System.out.println("Enter new state");
-							String state = sc.nextLine();
-							c.setAddress(state);
-							break;
-						case 4 : 
-							System.out.println("Enter new ZIP code");
-				 			String zip = sc.nextLine();
-				 			c.setZip(zip);
-				 			break;
-						case 5 : 
 							System.out.println("Enter new phone number");
 				 			long phone = sc.nextLong();
 				 			sc.nextLine();
 				 			c.setPhoneNumber(phone);
 				 			break;
-						case 6 : 
+						case 2 : 
 							System.out.println("Enter new Email id");
 				 			String email = sc.nextLine();
 				 			c.setEmail(email);
 				 			break;
+						case 3:
+							break;
 						}
+					if(choice == 3) {
+						break;
 					}
 				}
+					
+			}
+			else {
+				System.out.println("Enter correct name");
+			}
 			Book.set(i,c);
 			i++;
 		}
@@ -82,10 +67,9 @@ public class AddressBook{
 	}
 	
 	public void viewList() {
-		
 		for(Contact c : Book) {
 			System.out.println("First Name : " + c.getFirstName() + "Last Name : " + c.getLastName() + " Address : " + c.getAddress() + " City : " + c.getCity() 
-							+ " State : " + c.getState() + " ZIP : " + c.getZip() + " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail() + "\n");
+							+ " State : " + c.getState() + " ZIP : " + c.getZip() + " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail());
 		}
 	}
 
