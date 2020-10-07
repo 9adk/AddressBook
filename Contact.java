@@ -94,4 +94,8 @@ public class Contact{
 	public void setEmail(String email) {
 	    this.email = email;
 	}
+	public String toString() {
+		return "First Name : " + this.getFirstName() + " Last Name : " + this.getLastName() + " Address : " + this.getAddress() + " City : " + this.getCity() 
+		+ " State : " + this.getState() + " ZIP : " + this.getZip() + " Phone Number : " + this.getPhoneNumber() + " Email ID : " + this.getEmail() + "\n";
+	}
 }
