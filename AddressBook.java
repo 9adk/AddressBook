@@ -10,13 +10,18 @@ public class AddressBook{
 	public List<Contact> getBook(){
 		return Book;
 	}
-	public List<Contact> addContact(Contact c) {
+	public void addContact(Contact c) {
+		for(int i = 0; i<Book.size(); i++) {	
+			if(Book.get(i).equals(c)) {
+				System.out.println("The person already exists!!!");
+				return;
+			}
+		}
 		Book.add(c);
-		return Book;
 	}
 	
 	public void editContact(String name){
-		String x = "";
+		String x = "";x
 		int i = 0;
 		for(Contact c : Book) {
 			x = c.getFirstName() +" "+ c.getLastName();
@@ -55,7 +60,6 @@ public class AddressBook{
 			i++;
 		}
 	}
-	
 	public void deleteContact(String name){
 		String x = "";
 		for(Contact c : Book) {
@@ -67,9 +71,10 @@ public class AddressBook{
 	}
 	
 	public void viewList() {
+		
 		for(Contact c : Book) {
 			System.out.println("First Name : " + c.getFirstName() + "Last Name : " + c.getLastName() + " Address : " + c.getAddress() + " City : " + c.getCity() 
-							+ " State : " + c.getState() + " ZIP : " + c.getZip() + " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail());
+							+ " State : " + c.getState() + " ZIP : " + c.getZip() + " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail() + "\n");
 		}
 	}
 
