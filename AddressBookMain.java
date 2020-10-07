@@ -32,6 +32,26 @@ public class AddressBookMain{
 			System.out.println(c);
 		}
 	}
+	public void viewDataByCity(String city) {
+		List<Contact> list = new ArrayList<Contact>();
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getBook().stream().filter(c-> c.getState().equals(city))
+					.collect(Collectors.toList());
+		}
+		for(Contact c : list) {
+			System.out.println(c);
+		}
+	}
+	public void viewDataByState(String state) {
+		List<Contact> list = new ArrayList<Contact>();
+		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
+			list = entry.getValue().getBook().stream().filter(c-> c.getState().equals(state))
+					.collect(Collectors.toList());
+		}
+		for(Contact c : list) {
+			System.out.println(c);
+		}
+	}
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
@@ -132,8 +152,17 @@ public class AddressBookMain{
 					addBookMain.searchPersonByCity(per,stat);
 					break;
 				case 8:
-					System.exit(0);
+					System.out.println("Enter the city");
+					String citii = scanner.nextLine();
+					addBookMain.viewDataByCity(citii);
 					break;
+				case 9:
+					System.out.println("Enter the state");
+					String stats = scanner.nextLine();
+					addBookMain.viewDataByState(stats);
+					break;
+				case 9:
+					System.exit(0);
 			}
 		}
 	}
