@@ -1,6 +1,8 @@
 import java.util.*;
 public class AddressBookMain{
-	
+	public enum IOService {
+		CONSOLE_IO, FILE_IO, DB_IO, REST_IO
+	};
 	public static Map<String, AddressBook> addressBookMap;
 	public static Map<String, Map<String, AddressBook>> stateBookMap;
 	static Scanner scanner = new Scanner(System.in);
@@ -19,6 +21,11 @@ public class AddressBookMain{
 				System.out.println("Enter the name of city");
 				String cityForMap = scanner.nextLine();
 				AddressBook addBook = new AddressBook(cityForMap);
+				for (Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
+					if (entry.getKey().equals(cityForMap)) {
+						addBook = entry.getValue();
+					}
+				}
 				addressBookMap.put(cityForMap, addBook);
 				do {
 					System.out.println("Enter the details of person");
@@ -82,7 +89,7 @@ public class AddressBookMain{
 	public void viewDataByCity(String city) {
 		List<Contact> list = new ArrayList<Contact>();
 		for(Map.Entry<String,AddressBook> entry : addressBookMap.entrySet()) {
-			list = entry.getValue().getBook().stream().filter(c-> c.getState().equals(city))
+			list = entry.getValue().getBook().stream().filter(c-> c.getCity().equals(city))
 					.collect(Collectors.toList());
 		}
 		for(Contact c : list) {
@@ -127,25 +134,36 @@ public class AddressBookMain{
 			Collections.sort(entry.getValue().getBook(),new SortByZip());
 		}
 	}
+
+	/**
+	 * Usecase13 Writing the data to file
+	 * 
+	 * @param ioService
+	 */
+	public void writeData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookService().writeData(addressBookMap);
+		}
+	}
+
+	/**
+	 * Usecase13 Reading the data from file
+	 * 
+	 * @param ioService
+	 */
+	public void readData(IOService ioService) {
+		if (ioService.equals(IOService.FILE_IO)) {
+			new AddressBookService().readData();
+		}
+	}
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		AddressBookMain addBookMain = new AddressBookMain();
 		int v;
 		while(true) {
 			
-			System.out.println("1.to add person");
-			System.out.println("2.to edit contact");
-			System.out.println("3.to delete contact");
-			System.out.println("4.to view addbook");
-			System.out.println("5.to search contact in city");
-			System.out.println("6.to search contact in state");
-			System.out.println("7.to view data by city");
-			System.out.println("8.to view data in state");
-			System.out.println("9.to count contact from city");
-			System.out.println("10.to count contact from state");
-			System.out.println("11.to sort the addressbook by name");
-			System.out.println("12.to sort the addressbook by zip");
-			System.out.println("13.exit");
+			System.out.println("1.to add person\n2.to edit contact\n3.to delete contact\n4.to view addbook\n5.to search contact in city\n6.to search contact in state\n7.to view data by city\n8.to view data in state\n9.to count contact from city"
+					+ "\n10.to count contact from state\n11.to sort the addressbook by name\n12.to sort the addressbook by zip\n13.Writing data to file\n14.Reading data from File\n15.exit");
 			v = scanner.nextInt();
 			scanner.nextLine();
 			switch(v) {
@@ -227,6 +245,12 @@ public class AddressBookMain{
 					addBookMain.sortByZip();
 					break;
 				case 13:
+					addBookMain.writeData(IOService.FILE_IO);
+					break;
+				case 14:
+					addBookMain.readData(IOService.FILE_IO);
+					break;
+				case 15:
 					System.exit(0);
 					break;
 			}
