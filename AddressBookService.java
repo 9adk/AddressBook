@@ -8,9 +8,9 @@ import java.util.Map;
 public class AddressBookService {
 	public static String FILE_NAME = "AddressBook.txt";
 
-	public void writeData(Map<String, AddressBook> addressBookMap) {
+	public void writeData(Map<String, AddressBook> cityBookMap{
 		StringBuffer employeeBuffer = new StringBuffer();
-		for(Map.Entry<String, AddressBook> entry : addressBookMap.entrySet()) {
+		for(Map.Entry<String, AddressBook> entry : cityBookMap()) {
 			entry.getValue().getBook().forEach(contact -> {
 			String empString = contact.toString().concat("\n");
 			employeeBuffer.append(empString);

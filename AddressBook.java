@@ -1,80 +1,88 @@
-import java.util.*;
-public class AddressBook{
+package com.newAddressBook;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class AddressBook {
 	Scanner sc = new Scanner(System.in);
-	public List<Contact> Book = new ArrayList<Contact>();	
+	public List<Contact> contactList = new ArrayList<Contact>();
 	public String city;
-	
+
 	public AddressBook(String city) {
 		this.city = city;
 	}
-	public List<Contact> getBook(){
-		return Book;
+
+	public List<Contact> getContactList() {
+		return contactList;
 	}
+
 	public void addContact(Contact c) {
-		for(int i = 0; i<Book.size(); i++) {	
-			if(Book.get(i).equals(c)) {
+		for (int i = 0; i < contactList.size(); i++) {
+			if (contactList.get(i).equals(c)) {
 				System.out.println("The person already exists!!!");
 				return;
 			}
 		}
-		Book.add(c);
+		contactList.add(c);
 	}
-	
-	public void editContact(String name){
-		String x = "";x
+
+	public void editContact(String name) {
+		String x = "";
 		int i = 0;
-		for(Contact c : Book) {
-			x = c.getFirstName() +" "+ c.getLastName();
-			if(name.equals(x)) {
-				while(true) {					
+		for (Contact c : contactList) {
+			x = c.getFirstName() + " " + c.getLastName();
+			if (name.equals(x)) {
+				while (true) {
 					System.out.println("1.Change the phone number");
 					System.out.println("2.Change the Email id");
 					System.out.println("3.exit");
 					int choice = sc.nextInt();
 					sc.nextLine();
-					switch(choice) {
-						case 1 : 
-							System.out.println("Enter new phone number");
-				 			long phone = sc.nextLong();
-				 			sc.nextLine();
-				 			c.setPhoneNumber(phone);
-				 			break;
-						case 2 : 
-							System.out.println("Enter new Email id");
-				 			String email = sc.nextLine();
-				 			c.setEmail(email);
-				 			break;
-						case 3:
-							break;
-						}
-					if(choice == 3) {
+					switch (choice) {
+					case 1:
+						System.out.println("Enter new phone number");
+						long phone = sc.nextLong();
+						sc.nextLine();
+						c.setPhoneNumber(phone);
+						break;
+					case 2:
+						System.out.println("Enter new Email id");
+						String email = sc.nextLine();
+						c.setEmail(email);
+						break;
+					case 3:
+						break;
+					}
+					if (choice == 3) {
 						break;
 					}
 				}
-					
-			}
-			else {
+
+			} else {
 				System.out.println("Enter correct name");
 			}
-			Book.set(i,c);
+			contactList.set(i, c);
 			i++;
 		}
 	}
-	public void deleteContact(String name){
+
+	public void deleteContact(String name) {
 		String x = "";
-		for(Contact c : Book) {
-			x = c.getFirstName() +" "+c.getLastName();
-			if(name.equals(x)) {
-				Book.remove(c);
+		for (Contact c : contactList) {
+			x = c.getFirstName() + " " + c.getLastName();
+			if (name.equals(x)) {
+				contactList.remove(c);
 			}
 		}
 	}
-	
+
 	public void viewList() {
-		
-		for(Contact c : Book) {
-			System.out.println("First Name : " + c.getFirstName() + " Last Name : " + c.getLastName() + " Address : " + c.getAddress() + " City : " + c.getCity() 
-							+ " State : " + c.getState() + " ZIP : " + c.getZip() + " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail() + "\n");
+
+		for (Contact c : contactList) {
+			System.out.println("First Name : " + c.getFirstName() + " Last Name : " + c.getLastName() + " Address : "
+					+ c.getAddress() + " City : " + c.getCity() + " State : " + c.getState() + " ZIP : " + c.getZip()
+					+ " Phone Number : " + c.getPhoneNumber() + " Email ID : " + c.getEmail() + "\n");
 		}
 	}
 
