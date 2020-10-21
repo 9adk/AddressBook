@@ -182,7 +182,7 @@ public class AddressBookMain {
 
 			System.out.println(
 					"1.to add person\n2.to edit contact\n3.to delete contact\n4.to view addbook\n5.to search contact in city\n6.to search contact in state\n7.to view data by city\n8.to view data in state\n9.to count contact from city"
-							+ "\n10.to count contact from state\n11.to sort the addressbook by name\n12.to sort the addressbook by zip\n13.Writing data to file\n14Reading data from file\n15.exit");
+							+ "\n10.to count contact from state\n11.to sort the addressbook by name\n12.to sort the addressbook by zip\n13.Writing data to file\n14Reading data from file\n15Writing to and Reading from CSV file\n16.exit");
 			v = scanner.nextInt();
 			scanner.nextLine();
 			switch (v) {
@@ -268,8 +268,11 @@ public class AddressBookMain {
 				addBookMain.readData(IOService.FILE_IO);
 				break;
 			case 15:
-				System.exit(0);
+				new AddressBookService().writeDataToCSV(cityBookMap);
+				new AddressBookService().readDataFromCSV();
 				break;
+			case 16:
+				System.exit(0);
 			}
 		}
 	}
